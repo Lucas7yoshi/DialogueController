@@ -1,0 +1,31 @@
+name: Build CitizenFX Script
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    strategy:
+        matrix:
+            type: ['debug', 'release']
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: .\build${{matrix.type}}.cmd
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3.0.0
+      with:
+        path: ./dist/
+        name: DialogueController-${{matrix.type}}-${{github.sha}}
