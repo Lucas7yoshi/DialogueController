@@ -78,6 +78,8 @@ You can also find these in the decompiled scripts.
 
 For randomized lines, simply take what is in JH_SWITCH_01 JH_SWITCH_02 and remove _## to get the voiceline name.
 
+Sometimes you can use https://raw.githubusercontent.com/Parik27/V.Rainbomizer/master/data/VoiceLines.txt to find the speakers
+
 # "Queuing up" lines.
 Simply use IsScriptedConversationOngoing() to determine and wait for lines to complete.
 
